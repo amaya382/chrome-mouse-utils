@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "Mouse Utils",
+  "version": "0.1.0",
+  "description": "Minimal mouse gestures and smooth scrolling for Chrome",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": ["storage", "sessions"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["settings.js", "gesture.js", "content.js"],
+      "run_at": "document_start"
+    }
+  ]
+}
