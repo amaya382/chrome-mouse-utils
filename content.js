@@ -89,8 +89,13 @@
     };
   }
 
+  // Where the context menu opens on press, as on macOS and Linux, a quick second right click is the way to reach it.
+  const DOUBLE_CLICK_MS = 500;
+
   let gesture = null;
   let suppressContextMenu = false;
+  let menuOpensOnPress = false;
+  let plainClickAt = -Infinity;
 
   function endGesture() {
     gesture?.overlay?.remove();
@@ -103,7 +108,9 @@
       if (event.button !== 2) return;
       suppressContextMenu = false;
       endGesture();
-      if (!settings.gestureEnabled || isDisabled()) return;
+      const isDoubleClick = event.timeStamp - plainClickAt < DOUBLE_CLICK_MS;
+      plainClickAt = -Infinity;
+      if (isDoubleClick || !settings.gestureEnabled || isDisabled()) return;
       gesture = { points: [{ x: event.clientX, y: event.clientY }], directions: '', overlay: null };
     },
     true,
@@ -135,7 +142,10 @@
       if (event.button !== 2 || !gesture) return;
       const { directions } = gesture;
       endGesture();
-      if (!directions) return;
+      if (!directions) {
+        if (menuOpensOnPress) plainClickAt = event.timeStamp;
+        return;
+      }
       suppressContextMenu = true;
       consume(event);
       const command = commandFor(directions, settings.gestures);
@@ -147,7 +157,9 @@
   window.addEventListener(
     'contextmenu',
     (event) => {
-      if (!suppressContextMenu) return;
+      // A menu that arrives while the button is still held would capture the pointer before the gesture is drawn.
+      if (gesture) menuOpensOnPress = true;
+      else if (!suppressContextMenu) return;
       suppressContextMenu = false;
       consume(event);
     },

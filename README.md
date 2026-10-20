@@ -8,13 +8,13 @@ Mouse Utils is a Manifest V3 Chrome extension written in plain JavaScript. There
 
 ## ✨ Features
 
-- **Mouse gestures** — hold the right button and draw to go back and forward, reload, close or reopen a tab, and switch to the neighboring tab. The stroke and the matching action are shown while drawing, and a plain right click still opens the context menu. Each action's gesture can be changed in the options
+- **Mouse gestures** — hold the right button and draw to go back and forward, reload, close or reopen a tab, and switch to the neighboring tab. The stroke and the matching action are shown while drawing, and a plain right click still opens the context menu (a right double click on macOS and Linux). Each action's gesture can be changed in the options
 - **Smooth scrolling** — each mouse wheel notch scrolls with a short animation instead of jumping. Inner scroll panes are scrolled too, and pages that use the wheel themselves, such as maps, keep it
 - **Stays out of the way** — turn each feature on and off from the toolbar popup, and turn gestures off per site with regular expressions on the URL
 
 ## 🚀 Quick Start
 
-**Requirements:** desktop Chrome on Windows. See [Troubleshooting](#-troubleshooting) for macOS and Linux.
+**Requirements:** desktop Chrome on Windows, macOS, or Linux.
 
 1. Clone this repository
 
@@ -80,9 +80,9 @@ Settings are stored in `chrome.storage.sync`, so they follow the Chrome profile 
 
 Chrome does not run extensions on `chrome://` pages or the Chrome Web Store. On other pages, check that the tab was reloaded after installing and that no Disabled URLs entry matches the page.
 
-### The context menu opens when a gesture starts on macOS or Linux
+### A right click does not open the context menu on macOS or Linux
 
-Chrome on macOS and Linux opens the context menu as soon as the right button is pressed, before the gesture is drawn. Gestures are designed for Windows, where the menu opens on release and can be suppressed.
+Chrome on macOS and Linux opens the context menu as soon as the right button is pressed, before Mouse Utils can tell whether a gesture follows, so the menu is suppressed while gestures are on. Right double click to open it: the second press skips the gesture and lets the menu through.
 
 ### Gestures and smooth scrolling do not work over embedded content
 
