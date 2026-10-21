@@ -6,6 +6,7 @@
     back: 'Go back',
     forward: 'Go forward',
     reload: 'Reload',
+    newTab: 'New tab',
     closeTab: 'Close tab',
     reopenTab: 'Reopen closed tab',
     previousTab: 'Previous tab',

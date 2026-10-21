@@ -9,6 +9,7 @@ const commands = {
   back: (tab) => chrome.tabs.goBack(tab.id),
   forward: (tab) => chrome.tabs.goForward(tab.id),
   reload: (tab) => chrome.tabs.reload(tab.id),
+  newTab: (tab) => chrome.tabs.create({ windowId: tab.windowId }),
   closeTab: (tab) => chrome.tabs.remove(tab.id),
   reopenTab: () => chrome.sessions.restore(),
   previousTab: (tab) => activateNeighborTab(tab, -1),

@@ -8,7 +8,7 @@ Mouse Utils is a Manifest V3 Chrome extension written in plain JavaScript. There
 
 ## ✨ Features
 
-- **Mouse gestures** — hold the right button and draw to go back and forward, reload, close or reopen a tab, and switch to the neighboring tab. The stroke and the matching action are shown while drawing, and a plain right click still opens the context menu (a right double click on macOS and Linux). Each action's gesture can be changed in the options
+- **Mouse gestures** — hold the right button and draw to go back and forward, reload, open, close or reopen a tab, and switch to the neighboring tab. The stroke and the matching action are shown while drawing, and a plain right click still opens the context menu (a right double click on macOS and Linux). Each action's gesture can be changed in the options
 - **Smooth scrolling** — each mouse wheel notch scrolls with a short animation instead of jumping. Inner scroll panes are scrolled too, and pages that use the wheel themselves, such as maps, keep it
 - **Stays out of the way** — turn each feature on and off from the toolbar popup, and turn gestures off per site with regular expressions on the URL
 
@@ -39,8 +39,9 @@ The defaults are below, all turned on. In the options, each gesture can be chang
 | ↑← | Go back |
 | ↑→ | Go forward |
 | ↑↓ | Reload |
-| ↓ | Close the tab |
-| ↑ | Reopen the last closed tab |
+| ↓ | Open a new tab |
+| ↑ | Close the tab |
+| ↓↑ | Reopen the last closed tab |
 | ← | Switch to the tab on the left |
 | → | Switch to the tab on the right |
 
